@@ -1,0 +1,25 @@
+Time Complexity: O(n)
+Space Complexity: O(n)
+Challenges: Attaining the solution in an optimized way is challenging.
+Approach: To solve this problem we need nested iteration. Running Sum approach would be appropriate here. 
+During array traversal keep calculating running sum check if runningsum-target is already found. 
+If it is found this mean we have found a subarray whose sum is runningSum-target has happened before.
+Get the occurences of the element whose runningSum-target is found in the map.
+While traversing through the map keep updating the runningsum values into it.
+class Solution {
+    public int subarraySum(int[] nums, int k) {       
+       int runningSum=0;
+       HashMap<Integer,Integer> map1=new HashMap<>();
+       int count=0;
+       map1.put(0,1);
+       for(int i=0;i<nums.length;i++){
+         runningSum=runningSum+nums[i];
+         if(map1.containsKey(runningSum-k)){
+             int value=map1.get(runningSum-k);
+             count+=value;
+         }
+         map1.put(runningSum, map1.getOrDefault(runningSum, 0)+1);         
+       }
+       return count;
+    }
+}
