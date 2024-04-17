@@ -1,0 +1,58 @@
+Time Complexity: O(n)
+Space Complexity: O(1): At a max HashMap or Hashset is going to store 26 small letters and 26 capital letters.
+Challenges faced: Coming up with optimized solution is challenging. Getting a thought of incrementing the count by 2 when a character is present in the set.
+
+Approach: Initial approach to solve the problem is to maintain the count of each letter in a HashMap. This is O(n) traversal. 
+Then search through all the elements in the hashmap to get the length of longest palindrome. 
+Palindrome always require even number of elements+ only 1 odd element (This applies only in case input have odd number of elements).
+Ex: 1.ccccddab--> ccdadcc 
+2.cccbb--> cbcbc
+3.abab-->abba
+Optimized approach:
+Take input as a hashset , if hashset already has the letter then increment the count by 2 and remove the elemnt from hashset. otherwise keep adding.
+If the hasset is not emepty then inout string contains odd number of letters,so increment the count by 1
+class LengthOfLongestPalindrome {
+    public int longestPalindrome(String s) {
+        HashMap<Character, Integer> map=new HashMap<>();
+        for(int i=0;i<s.length();i++){ 
+            char ch = s.charAt(i); 
+            if(map.containsKey(ch)){
+                map.put(ch, map.get(ch)+1); 
+            }  else{
+                map.put(ch,1);
+            }                             
+        }   
+        int count=0;
+        boolean setIndicator=false;
+        for(Map.Entry<Character, Integer> entry: map.entrySet()){
+            if((entry.getValue() %2 == 0))
+            {
+                count+=entry.getValue();               
+            }   
+            else if(entry.getValue() > 1 && (entry.getValue() %2 == 1)){
+                count+=entry.getValue()-1;
+                setIndicator=true;
+            }  
+            else {
+                setIndicator=true;
+            }
+        }
+        return setIndicator==true? count+1: count;
+    }
+	
+	/* Approach 2
+	 public int longestPalindrome(String s) {
+        HashSet<Character> set=new HashSet<Character>();
+        int count=0;
+        for(int i=0;i<s.length();i++){ 
+            char ch = s.charAt(i); 
+            if(set.contains(new Character(ch))){
+                count=count+2;
+                set.remove(ch);
+            }  else{
+                set.add(ch);
+            }                             
+        }   
+        return set.size()==0? count: count+1;
+    }*/
+}

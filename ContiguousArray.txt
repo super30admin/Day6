@@ -1,0 +1,34 @@
+TimeComplexity: O(n)
+SpaceComplexity: O(n) 
+Challenges: In the problem there are nested iterations and hence we would go for Runningsum pattern.
+In a Runningsum pattern when we encounter 0 --> use -1 and when we encounter 1 --> use +1
+
+Approach:When there is a 0 then decrement the runningsum by 1 and 
+	 When there is a 1 then increment the running sum by 1.
+An array is said to have equal number of 0s and 1s only when the runningsum becomes equal. So keep storing runningsum as key and index as value, 
+if a running sum is found then calculate the maxLength.
+class Solution {
+    public int findMaxLength(int[] nums) {
+        HashMap<Integer, Integer> map1 = new HashMap<>();
+        map1.put(0,-1);//boundary or edge case scenario
+        int runningSum=0;
+        int maxLength=0;
+        if(nums==null || nums.length==0) return maxLength;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                runningSum=runningSum-1;
+            } else{
+                runningSum=runningSum+1;
+            }            
+            if(map1.containsKey(runningSum)){
+                int value = map1.get(runningSum);
+              
+                    maxLength=Math.max(maxLength, i-map1.get(runningSum));
+            }
+            else{
+                map1.put(runningSum, i);
+            }      
+        }
+        return maxLength;
+    }
+}
