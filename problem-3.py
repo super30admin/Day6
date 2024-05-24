@@ -1,7 +1,7 @@
 # Time Complexity
 # O(N)
 # Space Complexity
-# O(n)
+# O(1)
 
 # Approach :
 
