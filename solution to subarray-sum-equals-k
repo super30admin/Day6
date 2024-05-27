@@ -1,0 +1,25 @@
+// Time Complexity : worst case is O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+// take a running sum of the array. push values of rsum into a hashmap along with the index. if a value of rsum encountered has a difference of an existing element with the target, add 1 to result.
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int result = 0;
+        int rSum = 0;
+        map.put(0, 1); // initialize with 1 occurence of 0
+        for(int i = 0; i < nums.length; i++) {
+            rSum += nums[i];
+            if(map.containsKey(rSum - k)) {
+                result += map.get(rSum - k);
+            }
+            map.put(rSum, map.getOrDefault(rSum, 0) + 1);
+        }
+        return result;
+    }
+}
