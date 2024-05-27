@@ -1,0 +1,29 @@
+// Time Complexity : worst case is O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+// take a hashset, push values as you encounter them, if value already exists, remove from hashset and add 2 to the result. at the end, if the hashset is not empty, add another 1 to the result
+
+class Solution {
+    public int longestPalindrome(String s) {
+        if(s == null || s.length() == 0) {
+            return 0;
+        }
+        HashSet<Character> hs = new HashSet<>();
+        int result = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(hs.contains(c)) {
+                hs.remove(c);
+                result += 2;
+            } else {
+                hs.add(c);
+            }
+        }
+        if(!hs.isEmpty()) {
+            result += 1;
+        }
+        return result;
+    }
+}
