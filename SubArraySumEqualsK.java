@@ -1,6 +1,3 @@
-public class SubArraySumEqualsK {
-}
-
 /**
  L.C: 560.Subarray Sum Equals K
 
@@ -19,7 +16,7 @@ public class SubArraySumEqualsK {
  */
 
 
-class Solution {
+class SubArraySumEqualsK {
     public int subarraySum(int[] nums, int k) {
 
         if(nums == null || nums.length == 0) {
