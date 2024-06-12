@@ -1,0 +1,36 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        //1.init -- hashmap,count
+        //2. calculate curr sum & compliment
+        //if complement presenrt in hm than increment count by getting subaraay else Nothing
+        //3.check if curr sum present -> increment the value of curr sum 
+        //else new entry
+        //init
+        int count=0;
+        HashMap<Integer,Integer> map = new HashMap<>(); //first is curr sum and second is subarray
+        map.put(0,1);
+        int currSum=0;
+        
+        //2.for loop
+        
+        for(int i=0;i<nums.length;i++){
+            currSum = currSum + nums[i];
+            int compliment = currSum-k;
+            if(map.containsKey(compliment)){
+                count=count+ map.get(compliment);
+            }
+            if(map.containsKey(currSum)){
+                map.put(currSum,map.get(currSum) +1);
+            }
+            else{
+                map.put(currSum,1);
+            } 
+        }
+        return count;
+    }
+}
+
+//time Complexity : O(n) --num of elements of nums which traversed once
+//space Complexity : O(n) --space we use is to store the curr sum which can be storing all the element at worst case from array
+//ran successfully on leetcode after the class solution 
+//Approach : Hashing
