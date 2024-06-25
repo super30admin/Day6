@@ -1,0 +1,25 @@
+//o(n) -tc and sc- o(n)
+class Solution {
+    public int findMaxLength(int[] nums) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int num_of_subarrays=0;
+        int cum_sum=0;
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                cum_sum+=-1;
+            }else{
+                cum_sum+=1;
+            }
+
+            map.put(0,-1);
+            if(!map.containsKey(cum_sum)){
+                map.put(cum_sum,i);
+            }else{
+               int length_of_subarray= i-map.get(cum_sum);
+                num_of_subarrays= Math.max(num_of_subarrays, length_of_subarray);
+            }
+        }
+        return num_of_subarrays;
+    }
+}
