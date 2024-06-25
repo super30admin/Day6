@@ -1,0 +1,26 @@
+//TC- O(N) SC-O(1)
+class Solution {
+    public int longestPalindrome(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        char charArray[]= s.toCharArray();
+        for(int i=0;i<charArray.length;i++){
+            map.put(charArray[i], map.getOrDefault(charArray[i],0)+1);
+        }
+
+        int longest_palindrome=0;
+        boolean odd_length=false;
+        for(int count : map.values()){
+            if(count%2==0) longest_palindrome+=count;
+            else{
+                odd_length=true;
+                longest_palindrome+= count-1;
+            }
+
+            
+        }
+        if(odd_length) longest_palindrome++;
+        return longest_palindrome;
+
+        
+    }
+}
