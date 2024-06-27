@@ -4,7 +4,7 @@
  * Leetcode : https://leetcode.com/problems/longest-palindrome/ 
  * 
  * Time complexity : O(N)
- * Space complexity : O(N) 
+ * Space complexity : O(1) 
  * Did this code successfully run on Leetcode : Yes
  * Any problem you faced while coding this : -
  * Your code here along with comments explaining your approach in three sentences only
