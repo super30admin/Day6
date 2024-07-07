@@ -1,0 +1,84 @@
+#Problem 1
+
+We have to use running sum to make sure we have a linear time complextity. After doing the running sum
+we have to subtract from the k. If we find that previously in our running sum then we add to count. Also,
+each time we see the running sum we have to increase the times we saw it in our dictionary.
+
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        if nums == None or len(nums) == 0:
+            return -1
+        
+        mySet = {}
+        count = 0
+        rSum = 0
+
+        mySet[0] = 1
+
+        for i in nums:
+            rSum = rSum + i
+            diff = rSum - k
+            if diff in mySet:
+                count = count + mySet[diff]
+            if rSum in mySet:
+                mySet[rSum] = mySet[rSum] + 1
+            else:
+                mySet[rSum] = 1
+        return count
+
+
+#Problem 2
+
+Similar to problem 1, we have to use running sum to get linear time complextity. Every time we have a 0
+we subtract 1 and when we have a 1 we add 1. Doing this we have to see last time that running sum occured
+and then see if the length is greater than our largest length.
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        if nums == None or len(nums) == 0:
+            return -1
+
+        myDict = {}
+        rSum = 0
+        myDict[0] = -1
+        mx = 0
+
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                rSum = rSum - 1
+            else:
+                rSum = rSum + 1
+            if rSum in myDict:
+                mx = max(mx, i - myDict[rSum])
+            else:
+                myDict[rSum] = i
+        return mx
+
+#Problem 3
+
+We know that a set can't take duplicates. So if a duplicate character comes that means we have two of them
+to use in our palindrome. Remove the character from the set. At the end we will have in our set unqiue 
+characters or no characters. If there are unqiue characters left we can use one of them to make our 
+palindrome.
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        if s == " " or len(s) == 0:
+            return 0
+
+        mySet = set()
+
+        count = 0
+
+        for ch in s:
+            if ch not in mySet:
+                mySet.add(ch)
+            else:
+                count = count + 2
+                mySet.remove(ch)
+        
+        if len(mySet) > 0:
+            count = count + 1
+        
+        return count
