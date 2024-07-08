@@ -1,0 +1,90 @@
+Hashing-2
+
+
+Problem1 (https://leetcode.com/problems/subarray-sum-equals-k/)
+
+
+Time Complexity: O(N)
+Space Complexity: O(N)
+
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        if nums == 0 or len(nums)==0:
+            return 0
+        
+        rsum =0
+        count = 0
+        sMap={0:1}
+        
+        for i in range(len(nums)):
+            rsum = rsum +nums[i]
+            diff = rsum - k
+            if diff in sMap:
+                count = count + sMap[diff]
+            if rsum in sMap:
+                sMap[rsum] = sMap[rsum] +1  
+            else:
+                sMap[rsum]=1
+        return count
+
+
+
+
+
+Problem2 (https://leetcode.com/problems/contiguous-array/)
+
+
+Time Complexity - O(N)
+Space Complexity- O(N)
+
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        myDict = {}  
+        eleSum = 0  
+        maxlen = 0  
+        myDict[eleSum] = -1  
+
+        for i in range(len(nums)):
+            
+            if nums[i] == 0:
+                eleSum -= 1
+            else:
+                eleSum += 1
+
+            if eleSum in myDict:
+                maxlen = max(maxlen, i - myDict[eleSum]) 
+            else:
+                myDict[eleSum] = i  
+
+        return maxlen 
+
+
+
+
+
+
+
+Problem3 (https://leetcode.com/problems/longest-palindrome)
+
+Time Complexity - O(N)
+Space Complexity- O(N)
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        mySet = set()
+        count = 0
+      
+        for char in s:
+
+            if char in mySet:
+                count += 2  
+                mySet.remove(char)  
+            else:
+                mySet.add(char)
+
+        if mySet:
+            count += 1 
+       
+        return count 
