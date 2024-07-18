@@ -1,4 +1,6 @@
 //  Brute force
+//Time Complexity: O(n^2)
+//Space Complexity: O(1)
 
 class Solution {
     public int findMaxLength(int[] nums) {
@@ -23,7 +25,8 @@ class Solution {
 
 
 // Improved
-
+//Time Complexity: O(n)
+//Space Complexity: O(n)
 class Solution {
     public int findMaxLength(int[] nums) {
         int maxLength = 0;

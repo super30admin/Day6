@@ -1,3 +1,6 @@
+//  Brute force
+//Time Complexity: O(n^2)
+//Space Complexity: O(1)
 class Solution {
     public int subarraySum(int[] nums, int k) {
         int count = 0;
@@ -15,7 +18,8 @@ class Solution {
 }
 
 //Improved
-
+//Time Complexity: O(n)
+//Space Complexity: O(n)
 class Solution {
     public int subarraySum(int[] nums, int k) {
     int count = 0;
