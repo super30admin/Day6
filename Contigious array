@@ -1,0 +1,25 @@
+//time complexity: O(n^3)
+ //   space complexity: O(1)
+//brute force : check all possible subarrays
+class Solution {
+    public int findMaxLength(int[] nums) {
+        int max = 0; //edge case: if aary conatins only ones and zeros
+        //minimum value of max length can be 0
+       
+        
+        for(int i=0; i<nums.length; i++){
+            for(int j = i+1; j <= nums.length; j++){
+                 int zeros = 0;
+                 int ones = 0;
+                for(int k = i; k <j; k++){
+                    if(nums[k] == 0) zeros++;
+                    else ones++;
+                }
+                if(zeros == ones && j-i > max){
+                    max = j-i;
+                }
+            }
+        }
+        return max;
+    }
+}
