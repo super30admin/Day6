@@ -1,0 +1,30 @@
+//Time:O(n)
+// Space: O(n)
+//LeetCode:yes
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+        if(nums.length==0)
+            return -1;
+        int max=0,count=0;
+        HashMap<Integer, Integer> map1 = new HashMap<>();
+        map1.put(0,-1);
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==0) // Checking if the value of index is 0.
+                count--; // If 0 then reduce the count by 1;
+            else
+            {
+                count++; // If not, the increase count by 1;
+            }
+            if(map1.containsKey(count)) // Checks if the particular count already exits in HashMap as a key.
+            {
+                max = Math.max(max,i-map1.get(count)); // If yes, then fetch the value of key(i.e. fetch the value of index of count) and subtract it from the current index and store into max if the current value of max is lesser than the difference.
+            }
+            else{
+                map1.put(count,i); // If the count didn't exits in the Map before then put the count as a key and its index as its value in HashMap.
+            }
+        }
+        return max;
+    }
+}

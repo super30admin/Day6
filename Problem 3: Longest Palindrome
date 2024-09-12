@@ -1,0 +1,32 @@
+//Time :O(n)
+//Space:O(1)
+//LeetCode:Yes
+
+
+class Solution {
+    public int longestPalindrome(String s) {
+        int count=0; // Keep the updated length of string which can be palindrome.
+        if(s.length()==0)
+        {
+            return -1;
+        }
+        HashSet<Character> s1 = new HashSet<>(); // To store the unique character of string.
+        for(int i=0;i<s.length();i++)
+        {
+            if(s1.contains(s.charAt(i))) // Checks whether the character of string is already existing the Set or not.
+            {
+                count=count+2; // If yes, then increase the count by 2.
+                s1.remove(s.charAt(i)); // then remove that character from the Set.
+            }
+            else
+            {
+                s1.add(s.charAt(i)); // If No, then add the character to the Set.
+            }
+        }
+        if(s1.isEmpty()!=true) // After itreating through whole String and still the character in Set are their.
+        {
+            count++;  // Then increase the count by 1. As one character can be used to put in middle of string of even length to make it palindrome.
+        }
+        return count;
+    }
+}

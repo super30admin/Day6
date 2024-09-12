@@ -1,0 +1,28 @@
+// Time : O(n)
+// Space : O(n)
+// LeetCode : Yes
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        if(nums.length==0)
+            return -1;
+        HashMap<Integer, Integer> map1 = new HashMap<Integer, Integer>();
+        map1.put(0,1);
+        int sum=0;
+        int count=0;
+       
+        for(int i=0;i<nums.length;i++)
+        {
+            sum=sum+nums[i]; // Adding consecutive sum to the value
+            if(map1.containsKey(sum-k) ) // If the difference between sum and K exists in HashMap then
+            {
+                count = count+map1.get(sum-k);// add the value of key to the count.
+               
+            }
+
+                map1.put(sum, map1.getOrDefault(sum,0)+1); // add the currentsum as a key and if you find currentsum then gets its odd value and add 1 to it and if didn't find running sum then take a default value as 0 and add 1 to it.
+
+        return count;
+        
+    }
+}
