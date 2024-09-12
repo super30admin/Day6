@@ -1,0 +1,28 @@
+class Solution {
+    public int findMaxLength(int[] nums) {
+        //525. Contiguous Array
+        //Time and Space complexity is O(n)
+        HashMap<Integer,Integer> map = new HashMap<>();
+        //The key is the sum and the value is it's index at which                                     the sum first occured
+        map.put(0,-1); //for input like [0,1] where there are only 2 integers, the sum                           would be -1,0 . so there should  exist some value from where                           you  can substract
+        int sum =0;
+        int max = 0;
+        for(int i =0;i<nums.length;i++){
+            // if(nums[i]==0){
+            //     sum = sum-1;
+            // }
+            // else {
+            //     sum = sum+1;
+            // }
+            sum = nums[i]==0 ? sum-1 : sum+1;
+            if(map.containsKey(sum)){
+               max = Math.max(max,i-map.get(sum));
+                
+            }
+            else{
+                map.put(sum,i);
+            }
+        }
+        return max;
+    }
+}
