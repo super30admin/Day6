@@ -1,0 +1,29 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+
+// Your code here along with comments explaining your approach
+
+class Solution {
+    public int longestPalindrome(String s) {
+        if(s.length() == 0 || s == null) return 0;
+        HashSet<Character> hash = new HashSet<>();
+        int counter = 0;
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(hash.contains(c)){
+                counter += 2;
+                hash.remove(c);
+            }
+            else{
+                hash.add(c);
+            }
+        }
+        if(!hash.isEmpty()){
+        counter += 1;
+        }
+        return counter;
+    }
+}

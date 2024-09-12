@@ -1,0 +1,33 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no			
+
+
+// Your code here along with comments explaining your approach
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        if(nums == null || nums.length == 0) return 0;
+        //if(nums.length == 1) return 0;
+        int counter = 0;
+        int runSum = 0;
+        HashMap<Integer, Integer> hash = new HashMap<>();
+        hash.put(0,1);
+        for(int i = 0; i < nums.length; i++){
+            runSum += nums[i];
+            int com = runSum - k;
+            if(hash.containsKey(com)){
+                counter += hash.get(com);
+            }
+            if(hash.containsKey(runSum)){
+                hash.put(runSum, hash.get(runSum) + 1);
+            }
+            else{
+                hash.put(runSum, 1);
+            
+            }
+        }
+        return counter;
+    }
+}
