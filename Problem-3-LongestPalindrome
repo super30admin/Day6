@@ -1,0 +1,25 @@
+// Time Complexity & space complexity - O(n)
+class Solution {
+    public int longestPalindrome(String s) {
+        int count =0;
+        HashSet<Character> hset = new HashSet<Character>();
+        for(int i=0; i < s.length() ; i++)
+        {
+            char element = s.charAt(i);
+            if(hset.contains(element))
+            {
+                count = count + 2;
+                hset.remove(element);
+            }
+            else
+            {
+                hset.add(element);
+            }
+        }
+        if(!hset.isEmpty())
+        {
+            count = count + 1;
+        }
+        return count;
+    }
+}
