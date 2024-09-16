@@ -1,0 +1,30 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : YES
+// Any problem you faced while coding this : NO
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        map<int,int> mp;
+        int currentsum=0,count=0;
+        mp[0]=1;
+        for(int i=0;i<nums.size();i++){
+            currentsum+=nums[i];
+        if(mp.find(currentsum-k)!=mp.end())
+        {
+            count+=mp[currentsum-k];
+        }
+        if(mp.find(currentsum)!=mp.end())
+        {
+            mp[currentsum]++;
+        }
+        else
+        {
+            mp[currentsum]=1;
+        }
+            
+            }
+        return count;
+    }
+};
