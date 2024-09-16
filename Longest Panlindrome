@@ -1,0 +1,39 @@
+// Time Complexity : O(n) 
+// Space Complexity : Constant as max of 26 letter
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+class Solution {
+    public int longestPalindrome(String s) {
+        HashSet<Character> count_alpha = new HashSet<>();
+       // int longest_length = 0;
+        if(s.length()== 0 || s.length()==1)
+            return s.length();
+        else
+        {
+             for(int i=0; i<s.length(); i++)
+        {
+            if(count_alpha.contains(s.charAt(i)))
+            {
+                count_alpha.remove(s.charAt(i));
+                //longest_length = longest_length +2;
+            }
+            else
+            {
+                count_alpha.add(s.charAt(i));
+            }
+        }
+       
+        if(count_alpha.size()>0)
+            return (s.length() - count_alpha.size() +1);
+        else
+            return s.length();
+        
+        }
+        
+       
+    }
+    
+}

@@ -1,0 +1,32 @@
+// Time Complexity :O(n) - 1 pass
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this :
+deciding what to store in Hash Map
+
+
+// Your code here along with comments explaining your approach
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        HashMap<Integer, Integer> sum_window = new HashMap<>();
+        
+        if(nums.length==1)
+            return nums[0]==k?1:0;
+        int count_subarray =0;
+        int rsum =0;
+        sum_window.put(rsum,1);
+        
+        for(int i=0; i<nums.length; i++)
+        {
+            rsum = rsum + nums[i];
+            int diff = rsum - k;
+            if(sum_window.containsKey(diff))
+                count_subarray = count_subarray + sum_window.get(diff);
+            if(sum_window.containsKey(rsum))
+                sum_window.put(rsum, (sum_window.get(rsum)+1));
+            else
+                sum_window.put(rsum, 1);
+        }
+        return count_subarray;
+    }
+}
