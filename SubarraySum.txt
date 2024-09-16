@@ -1,0 +1,31 @@
+class Solution{
+	public int subarraySum(int[] nums, int k){
+	
+		HashMap<Integer, Integer> hashMap = new HashMap<>();
+		
+		int count = 0;
+		int currentSum = 0;
+		
+		hashMap.put(0,1);
+		
+		for(int x : nums) {
+		
+			currentSum += x;
+			int compliment = currentSum - k;
+			
+			if(hashMap.containsKey(compliment))
+				count += hashMap.get(compliment);
+				
+			if(hashMap.containsKey(currentSum)){
+			
+				hashMap.put(currentSum , hashMap.get(currentSum) + 1);
+			}
+			else{
+				hashMap.put(currentSum, 1);
+			}
+			
+		}
+		
+		return count;
+	}
+}

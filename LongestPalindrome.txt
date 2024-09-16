@@ -1,0 +1,31 @@
+// TC = O(n)
+// SC = O(n)
+
+class Solution{
+
+	public int longestPalindrome(String s) {
+		
+		HashSet<Character> set = new HashSet<>();
+		char[] charArray = s.toCharArray();
+		
+		int size = 0;
+		
+		for (char c : charArray){
+			
+			if(set.contains(c)){
+				set.remove(c);
+				size = size + 2;
+			}
+			else{
+				set.add(c);
+			}
+		
+		}
+		
+		if(!set.isEmpty()){
+			size++;
+		}
+		
+		return size;
+	}
+}
