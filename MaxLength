@@ -1,0 +1,26 @@
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+// Program ran on Leetcode successfully
+
+class MaxLength {
+    public int findMaxLength(int[] nums) {
+        HashMap<Integer, Integer> lengthMap = new HashMap<>();
+        lengthMap.put(0, -1);
+        int sum = 0; 
+        int maxLen = 0; 
+        for (int i = 0; i < nums.length; i++){
+            if(nums[i] == 1){
+                sum ++; 
+            }else{
+                sum --;
+            }
+            if (lengthMap.containsKey(sum)){
+                maxLen = Math.max(maxLen, i - lengthMap.get(sum));
+            }else{
+                lengthMap.put(sum, i);
+            }
+        }
+        return maxLen;
+        
+    }
+}
