@@ -1,0 +1,27 @@
+// Time Complexity :O(n2)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode : Yes
+// Brute force : Taking every possible subarray of the given nums array, find sum of elements of each of those subarrays and check for equality of sum 
+obtained with the given k. If sum equals increment count used to store the required result.
+
+class Solution {
+    func subarraySum(_ nums: [Int], _ k: Int) -> Int {
+        var sum = 0
+        var result = 0
+        var preSum = [0: 1]
+        
+        for i in 0..<nums.count {
+            sum += nums[i]
+            if preSum.keys.contains(sum - k) {
+                result += preSum[sum - k]!
+            }
+            if let item = preSum[sum] {
+                preSum[sum] = item + 1
+            } else {
+                preSum[sum] = 1
+            }
+        }
+        
+        return result
+    }
+}

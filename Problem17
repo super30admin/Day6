@@ -1,0 +1,28 @@
+// Time Complexity :O(n)
+// Space Complexity :O(n)
+// Did this code successfully run on Leetcode :Yes
+//Brute force :Consider every possible subarray within the given array and count the number of zeros and ones in each subarray.
+Then, we find out the maximum size subarray with equal no. of zeros and ones out of them.
+
+
+class Solution {
+    func findMaxLength(_ nums: [Int]) -> Int {
+    guard nums.count > 1 else { return 0 }
+
+    var count = 0
+    var indices = [0:-1]
+    var maxLength = 0
+        
+    for index in nums.indices {
+        count += nums[index] == 0 ? -1 : 1
+        
+        if let previous = indices[count] {
+            maxLength = max(maxLength, index - previous)
+        } else {
+            indices[count] = index
+        }
+    }
+
+    return maxLength
+}
+}
