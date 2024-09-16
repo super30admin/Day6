@@ -1,0 +1,33 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+// approach taught in class
+
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        
+        int count = 0, sum = 0;
+        
+        // hashmap to store the running sum and no of count the running sum occured
+        HashMap < Integer, Integer > map = new HashMap < > ();
+       
+        // for edge case we add 0 and its value as 1
+        map.put(0, 1);
+        
+        // now iterate over the array
+        for (int i = 0; i < nums.length; i++) {
+            
+            sum += nums[i];   // add the nums value to the sum
+            if (map.containsKey(sum - k)) // i map has the value sum - k then add the map.get(Sum -k) to the count
+                count += map.get(sum - k);
+            
+            // add the sum to the hashmap and its value as 1, if its already present increase its count by 1
+            map.put(sum, map.getOrDefault(sum, 0) + 1);
+        }
+        
+        return count;
+    }
+}

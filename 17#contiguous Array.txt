@@ -1,0 +1,36 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : No
+
+// approach taught in class
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+        
+        // hasmap to store the count and at which index it occured last
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        // put  count 0 and index -1 for the edge case
+        map.put(0, -1);
+        
+        // maxlen and count variable
+        int maxlen = 0, count = 0;
+        
+        for (int i = 0; i < nums.length; i++) {
+        
+            // we add +1 if the nums[i] = 1 else we add -1 to count
+            count = count + (nums[i] == 1 ? 1 : -1);
+            
+            //if the hashmap has count then we see if the hasmap count and current index value subtraction is greater than len, if so then update maxlen
+            if (map.containsKey(count)) {
+                maxlen = Math.max(maxlen, i - map.get(count));
+            } else { // else put count and its index in hasmap
+                map.put(count, i);
+            }
+        }
+        
+        //return the max length of contiguous array
+        return maxlen;
+    }
+}

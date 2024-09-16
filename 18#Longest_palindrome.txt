@@ -1,0 +1,58 @@
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Yes
+
+// approach 1: 2 pass
+// Time : O(n) , space: O(1)
+class Solution {
+    public int longestPalindrome(String s) {
+        
+        //edge case 
+        if(s == null || s.length() == 0) return 0;
+        
+        int[] count = new int[128]; /* array to keep charcater count*/
+        
+        for (char c: s.toCharArray())
+            count[c]++;    // keep charcater of each charcater of string
+
+        int ans = 0;      // to hold the ans value
+        int i = 0;
+        for (int v: count) {  // iterate over count of all charcaters
+            ans += v / 2 * 2;  // take the even pf charcaters
+            if (ans % 2 == 0 && v % 2 == 1) // if the charcater count is odd and ans is odd then add 1
+                ans++;
+        }
+        
+        // return ans
+        return ans;  
+    }
+}
+
+// approach 2: 1 pass
+/* Time : O(n) space: O(n)
+
+   // edge case
+   if( s == null || s.length() == 0)
+      return 0;
+
+   // define hashset to store already visited charcater
+   HashSet<Charcater> set = new HashSet<>();
+   int count = 0;
+   
+   for (char c: s.toCharArray()){
+        if(set.contains(c)){  // if set that charcater already then increase the count by 2 and remove charcater from set
+          set.remove(c);
+          count +=2;
+        }
+        else
+            set.add(c);
+   }
+   
+   // if set size is greater than zero then we can add 1 to count so we can make plaindrome string of odd length 
+   return set.size() >=1 ? count+1:count;
+*/
+   
+   
+   
+   
+   
+   
