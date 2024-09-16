@@ -7,6 +7,7 @@ Explain your approach in **three sentences only** at top of your code
 
 
 ## Problem2 (https://leetcode.com/problems/contiguous-array/)
+[Reference](https://www.youtube.com/watch?v=EN2dRWxgF4Y )
 
 
 ## Problem3 (https://leetcode.com/problems/longest-palindrome)
