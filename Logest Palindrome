@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+    unordered_set<char> charset;
+        int length = 0;
+        for(auto i : s){
+               if(charset.find(i) != charset.end() ){
+                   charset.erase(i);
+                   length += 2;
+               }
+            else{
+                charset.insert(i);
+            }
+        }
+        if(charset.empty()){
+            return length;
+        }
+        else
+        {
+            return length+1;
+        } 
+    }
+        
+};

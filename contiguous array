@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+        unordered_map<int,int> T;
+        int rsum = 0;
+        int length = 0;
+        T.insert({0,-1});
+        for(int i = 0 ; i< nums.size() ; i++){
+            if(nums[i] == 0)
+                {rsum -= 1 ;}
+            else
+                {rsum += 1;}
+        if(T.find(rsum) == T.end()){
+            T.insert({rsum,i});
+        }
+        else{
+            length = max(length, (i-T[rsum]));
+        }}
+        return length;    
+    }
+};
