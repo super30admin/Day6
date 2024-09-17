@@ -1,0 +1,26 @@
+//Time: O(n) : iterating through all n elements in the array
+//Space:  O(1) storing 256 fixed size chars in worst case into set
+class Solution {
+    public int longestPalindrome(String s) {
+        if(s.length()==0 || s==null) return 0;
+        if(s.length()==1) return 1;
+        HashSet<Character> set=new HashSet<>();
+        int count=0;
+        for(char c: s.toCharArray())
+        {
+            if(!set.contains(c))
+                set.add(c);
+            else
+            {
+              count+=2;
+              set.remove(c);
+            }
+                
+        }
+        if(set.size()>0)
+        {
+            count+=1;
+        }
+        return count;
+    }
+}

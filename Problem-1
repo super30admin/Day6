@@ -1,0 +1,52 @@
+//brute force solution
+//time : O(n*n)
+//space : O(1)
+//ran on leetcode : yes
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int sum=0;
+        int count=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            sum=nums[i];
+            if(sum ==k)
+                count++;
+            for(int j=i+1;j<nums.length;j++)
+            {
+                
+                sum+=nums[j];
+                if(sum==k)
+                    count++;
+            }
+        }
+        return count;
+    }
+}
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int sum=0;
+        int count = 0;
+       HashMap<Integer,Integer> map = new HashMap<>();
+        //put this entry since we will encounter first sum equals k that time we need sum-k = 0 entry which gives count of 1, so value put as 1
+        map.put(0,1);
+        
+        for(int i=0;i<nums.length;i++)
+        {
+            //sum at each loop
+            sum=sum+nums[i];
+            //check in map that sum-k exist
+            if(map.containsKey(sum-k))
+            {
+                //if exist means we already saw sum somewhere so get the count of already visited array and add it to count
+                count+= map.get(sum-k);
+            }
+            //in both case if we found sum or not, put this entry which tracks count of previous sums at the time of calculated sum in that loop
+            //getor default checks if no entry found for sum, returns 0 else get the value of sum and increase it by 1
+            map.put(sum,map.getOrDefault(sum,0)+1);
+        }
+        return count;
+}
+    
+}

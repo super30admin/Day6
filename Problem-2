@@ -1,0 +1,61 @@
+//brute force : idea is to find max counts of equal 0 and 1 in each iterations 
+//time : O(n*n)
+//space : O(1)
+//executed on leetcode : no, time limit error
+class Solution {
+   public int findMaxLength(int[] nums) {
+        int maxlen = 0;
+     
+        for (int i = 0; i < nums.length; i++) {
+            //for each new loop we need to reset count values
+            int countZero = 0, countOne = 0;
+            //inner loop from i to n-1 every time when i changes
+            for (int j = i; end < nums.length; j++) {
+                if (nums[j] == 0) {
+                    countZero++;
+                } else {
+                    countOne++;
+                }
+                //when count equals, update max length by checking index positions
+                if (countZero == countOne) {
+                    maxlen = Math.max(maxlen, j - i + 1);
+                }
+            }
+        }
+        return maxlen;
+    }
+}
+
+//using hashmap
+//time : O(n) since traversing each element once
+//space: O(n) storing n values to map in worst case
+//executed on leetcode : yes
+class Solution {
+   public int findMaxLength(int[] nums) {
+        HashMap<Integer,Integer> map=new HashMap<>();
+       map.put(0,-1);
+       int count=0;
+       int maxlen=0;
+       //one loop from start to end
+        for(int i=0;i<nums.length;i++)
+        {
+            //if 0 then decrement count else increment it
+            if(nums[i]==0)
+                count--;
+            else
+                count++;
+            //if same count exist 
+            if(map.containsKey(count))
+            {
+                //i is the index we are currently at and map.get(count) is the last index we saw the same count
+                maxlen= Math.max(maxlen,i-map.get(count));
+            }
+            else
+            {
+                //put the index of the same count
+                map.put(count,i);
+            }
+        }
+       return maxlen;
+    }
+}
