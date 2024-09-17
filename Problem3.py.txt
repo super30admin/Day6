@@ -1,0 +1,19 @@
+# Time Complexity : O(n)
+# Space Complexity : O(n)
+# Did this code successfully run on LeetCode : Yes
+# Any problem you faced while coding this : Yes, 1+ hour to solve
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        
+        hashSet = set()
+        count = 0
+        
+        for i in range(len(s)):
+            if s[i] in hashSet:
+                hashSet.remove(s[i])
+                count += 2
+            else:
+                hashSet.add(s[i])
+                
+        return count + 1 if len(hashSet) > 0 else count

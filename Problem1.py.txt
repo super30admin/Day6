@@ -1,0 +1,24 @@
+# Time Complexity : O(n)
+# Space Complexity : O(n)
+# Did this code successfully run on LeetCode : Yes
+# Any problem you faced while coding this : Solved only after discussed in class
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        
+        hashMap = {}
+        hashMap[0] = 1
+        runningSum = 0
+        count = 0
+        
+        for i in range(len(nums)):
+            runningSum += nums[i]
+            if runningSum - k in hashMap:
+                count += hashMap[runningSum-k]
+            if runningSum in hashMap:
+                hashMap[runningSum] += 1
+            else:
+                hashMap[runningSum] = 1
+
+        return count
+
