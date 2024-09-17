@@ -1,0 +1,14 @@
+from collections import defaultdict
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        dict1=defaultdict(int);
+        dict1[0] = 1;
+        prefixsum=0;
+        count=0;
+        for i in range(len(nums)):
+            prefixsum += nums[i];
+            if(prefixsum-k in dict1):
+                count+=dict1[prefixsum-k];
+            dict1[prefixsum] += 1;
+        return count;
+        

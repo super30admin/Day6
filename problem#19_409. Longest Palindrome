@@ -1,0 +1,19 @@
+from collections import defaultdict
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        hashmap = defaultdict(int);
+        count = 0
+        status = False;
+        for ch in s:
+            hashmap[ch] += 1;
+        for k,v in hashmap.items():
+            if(v>1 and v%2 == 0):
+                count += v;
+            elif(v>1 and v%2 == 1):
+                count += (v-1);
+            if(v%2 == 1):
+                status = True;
+        if(status):
+            count += 1;
+        return count ;
+        

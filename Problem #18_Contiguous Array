@@ -1,0 +1,21 @@
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        prefixsum = 0;
+        hashmap = {}
+        maxlen = 0;
+        for i in range(len(nums)):
+            if(nums[i] == 1):
+                prefixsum += 1;
+            else:
+                prefixsum -= 1;
+            if(prefixsum == 0):
+                maxlen = i+1;
+            else:
+                if(prefixsum in hashmap):
+                    maxlen = max(maxlen, i - hashmap[prefixsum]);
+            if(prefixsum not in hashmap):
+                hashmap[prefixsum] = i;
+        return maxlen;
+                
+        
