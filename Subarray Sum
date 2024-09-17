@@ -1,0 +1,33 @@
+// Couldnt come up with the logic for optimal solution. Coded Brute force
+
+import java.util.*;
+
+public class SubArray {
+
+    public static void checkSubarraySum(int[] nums, int k) {
+
+        int count =0;
+        for (int i = 0; i < nums.length; i++)
+        {
+            int sum = 0;
+            for (int j = i; j < nums.length; j++)
+            {
+                sum += nums[j];
+                if (sum == k)
+                    count++;
+            }
+        }
+
+        System.out.println(count);
+    }
+
+
+    public static void main(String[] args) {
+
+        int[] arr= {10,3,5,8,6,12,20,15,31};
+        int k=31;
+
+        checkSubarraySum(arr,k);
+
+    }
+}
