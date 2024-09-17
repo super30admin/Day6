@@ -1,0 +1,30 @@
+//TC = O(n)
+//SC = O(1)
+class Solution {
+    public String longestPalindrome(String s) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(int i=0; i<s.length(); i++){
+            char c = s.charAt(i);
+            map.put(c, map.getOrDefault(c, 0)+1);
+        }
+        
+        int maxPalenLen = 0;
+        boolean hasOddChar = false;
+        
+        for(int count : map.values()){
+            if(count%2 == 0){
+                maxPalenLen += count;;
+            }
+            else{ 
+                hasOddChar = true;
+                maxPalenLen += count - 1;
+            }
+        }
+        if(hasOddChar){
+            maxPalenLen += 1;
+        }
+        
+        return maxPalenLen;
+        
+    }
+}
