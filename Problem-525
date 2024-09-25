@@ -1,0 +1,77 @@
+/*
+Time Complexity-> O(n)
+
+Did not run on Leetcode : 455/555 test cases passed.
+
+Approach:
+
+Global counters for 0s and 1s tcount0 and tcount1;
+counting the 0s and 1s as count0 and count1;
+as soon as both count are equal, reset the conters.
+
+if tcount0!=tcount1 at the end, do not add to longest length, compare only.
+if tcount==tcount1, then which ever is minimum, among count0 and count1, would be multiplied by 2 and added to the result length.
+
+*/
+class Solution {
+    public int findMaxLength(int[] nums) {
+
+        
+
+
+        int count0=0;
+        int count1=0;
+        int result=0;
+        int tcount0=0;
+        int tcount1=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]==0)
+            {
+                count0++;
+                tcount0++;
+            }
+            else{
+                count1++;
+                tcount1++;
+            }
+            
+            if(count1==count0)
+            {
+                int result1=count1*2;
+                
+                if(tcount1==tcount0)
+                {
+                    result=result+result1;
+                }
+                else{
+                    if(result1>result)
+                    {
+                        result=result1;
+                    }
+                }
+                
+                count1=0;
+                count0=0;
+                
+            }
+
+        }
+        
+        if(tcount1-count1==tcount0-count0)
+        {
+           if(count1>count0)
+            result=result+count0*2;
+        else result=result+count1*2;
+        
+        }
+       
+
+       
+    
+
+        return result;
+   
+   //     return 1;
+    }
+}

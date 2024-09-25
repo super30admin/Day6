@@ -1,0 +1,61 @@
+/*
+
+Time Complexity: dont know.
+
+Did not work, 33/80 test cases.
+Approach: using sliding window ,
+
+
+
+*/
+
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        
+        
+        int start=0;
+        int end=0;
+        int temp=0;
+        int result=0;
+        while(end<nums.length)
+        {
+            temp=0;
+            for(int j=start;j<=end;j++)
+            {
+                
+                if(end==nums.length)
+                {
+                    if(start!=end)
+                    {
+                        start=start+1;
+                        end=start;
+                    }
+                    
+                    break;
+                }
+                temp=temp+nums[j];
+                if(temp==k)
+                {
+                    result++;
+                    start=start+1;
+                    end=start;
+                    temp=0;
+                    break;
+                }
+                if(temp<k)
+                {
+                    end++;
+                }
+                else{
+                    start=start+1;
+                    end=start;
+                   temp=0;
+                    break;
+                }
+            }
+        }
+        
+        return result;
+    }
+}

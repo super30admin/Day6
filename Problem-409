@@ -1,0 +1,71 @@
+/*
+Time Complexity: O(n)
+Code did not run, 49/95 cases passed.
+
+Approach:
+put all the characters in the hashmap with their frequency.
+
+All characters with even frequency, are good and can be added directly to the result.
+Among the odd frequency chracters, only one character would be chosen, which has the longest length.
+
+*/
+
+class Solution {
+    public int longestPalindrome(String s) {
+     
+        HashMap<Character,Integer> hm = new HashMap<>();
+        
+        
+        for(int i=0; i<s.length();i++)
+        {
+            char ct=s.charAt(i);
+            if(hm.containsKey(ct))
+            {
+                int val=hm.get(ct);
+                val++;
+                hm.put(ct,val);
+            }
+            else
+            {
+                int val=1;
+                //val++;
+                hm.put(ct,val);
+            }    
+        }
+        
+        
+       Iterator<Map.Entry<Character, Integer>> itr = hm.entrySet().iterator(); 
+        
+        int len=0;
+        int flag=0;
+        int lenodd=0;
+        while(itr.hasNext()) 
+        { 
+             Map.Entry<Character, Integer> entry = itr.next(); 
+            int val=entry.getValue();
+            if(entry.getValue()%2==1)
+            {
+                
+              
+                if(val>lenodd)
+                {
+                    lenodd=val;
+                }
+             //   System.out.println(entry.getKey());
+             
+            }
+            else{
+                len=len+entry.getValue();
+            }
+         
+        }
+        len=len+lenodd;
+        
+        
+        return len;
+        
+        
+        
+        
+    }
+}
