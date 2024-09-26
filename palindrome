@@ -1,0 +1,29 @@
+//if the char occurs even number of times then +2
+//one largest odd number times character can exist so count odd also
+
+/Time Complexity : O(n)
+//Space Complexity : O(1)
+// Did this code successfully run on Leetcode : no, 49/95 test cases passed
+class Solution {
+    public int longestPalindrome(String s) {
+        char[] ch = s.toCharArray();
+        int len=0,odd=0;
+        int[] count = new int[128];
+        for(char c : ch)     
+        {
+           count[c] =count[c] +1 ;
+        }
+        for(int i=0;i<127;i++)
+        {
+            if(count[i]%2==0)
+            {
+                len =len+ count[i];
+            }else {
+                odd=Math.max(count[i], odd);
+                
+            }
+            
+            
+        } return len+odd;
+    } 
+}
