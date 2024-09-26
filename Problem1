@@ -1,0 +1,38 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        
+        // brute force , iterate through the array and get the sum of consecutive numbers , 
+        // if it equals k increment by 1 , if less keep going , if more restart the sum calculation from next number
+        int noOfSubarrays = 0;
+        int tempSum = Integer.MIN_VALUE;
+        for(int i = 0 ; i< nums.length ; i++){ // Input: nums = [1], k = 0
+            
+            if(nums[i] == k){ // 1 == 0 false
+                noOfSubarrays++;
+            }
+            else if( i != 0 && k >= nums[i]+ nums[i-1] ){ //
+                tempSum = nums[i]+ nums[i-1];
+            }
+            else if(nums[i] < k && k >= (tempSum+nums[i])){ // 1 < 0 && 2 >= 1 true
+                tempSum = tempSum+nums[i]; // 1+1 = 2
+            }
+
+            else{
+                tempSum = Integer.MIN_VALUE;
+            }
+            if(tempSum == k){ // 2 == 2 false
+                noOfSubarrays++;
+                tempSum = Integer.MIN_VALUE;
+            }
+        }
+        return noOfSubarrays;
+    }
+}
+
+
+//
+//
+//Input: nums = [1,1,2,3], k = 3
+//Output: 2
+// Work in progress , does not meet 1 test case 
+// Input [1,-1,0] , k = 0 Output 2 Expected 3
