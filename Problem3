@@ -1,0 +1,39 @@
+// palindrome - characters that occur forward must repeat backward with middle may have single charater
+// example madam
+// means each character must have correponding partner
+// idea is we count how many characters occur in pairs
+
+// time complexity O(n) where n is length of string
+// runs on leetcode
+
+class Solution {
+    public int longestPalindrome(String s) {
+        
+        // ascii table one position for each character (though we have only A-Z, a-z)
+        int[] chars = new int[128]; 
+        
+        char[] charArray = s.toCharArray();
+        
+        int length = 0;
+        
+        for (int index=0; index < charArray.length; index++) {
+            // increment count
+            chars[ charArray[index]] ++;
+            // if we 2 chars found, reset count, increment palindrome length
+            if (chars[charArray[index]] == 2) {
+                length += 2;
+                chars[charArray[index]] = 0;
+            }
+            
+        }
+        
+        // final length
+        if (length == s.length()) {
+            // we exhausted all chars
+            return length;
+        } else {
+            // we can single char in middle
+            return (length+1);
+        }
+    }
+}
