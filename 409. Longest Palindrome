@@ -1,0 +1,38 @@
+Time complexity: O(n)
+Space complexity: O(1)
+Did this code submitted successfully on leetcode: Yes
+
+class Solution {
+    public int longestPalindrome(String s) {
+        // 0. Check for length of input, if null or 0, return 0;
+        // 1. We will create a hashset
+        // 2. We will store every character one by one
+        // 3. If the same character appears again, we will remove it from the set and increase the count.
+        // 4. If the hashmap does not contain any letter at the end, we will return (count*2)
+        // 5. If the hashset is not empty, we have to return (count*2 + 1)
+       
+        //0.
+        if(s==null || s.length()==0)
+            return 0;
+        
+        //1.
+        HashSet<Character> set = new HashSet<>();
+        
+        //2.
+        int count=0;
+        for(int i=0; i<s.length(); i++){
+            //3.
+            if(set.contains(s.charAt(i))){
+                set.remove(s.charAt(i));
+                count++;
+            }else{
+                set.add(s.charAt(i));
+            }
+        }
+        //4.
+        if(set.isEmpty())
+            return count*2;
+        
+    return (count*2)+1;
+    }
+}

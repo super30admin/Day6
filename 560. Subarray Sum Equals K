@@ -1,0 +1,28 @@
+Time Complexity: O(n)
+Space complexity: O(n)
+Did the code successfully submitted on leetcode: Yes
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        
+        //1. First we have to create a hashmap which will store the sum and how many times it occurs.
+        //2. We also have to check for the difference and update the count of sum occurs if the difference is also same as of one of the sum.
+        
+        int count=0,sum=0;
+        
+        HashMap<Integer, Integer> hmap = new HashMap<>();
+        
+        // For the first, we will put initial sum 0 with count 1
+        hmap.put(0,1);
+        
+        for(int n:nums){
+            sum = sum + n;
+            
+            if(hmap.containsKey(sum-k))
+                count = count + hmap.get(sum-k);
+            
+            hmap.put(sum, hmap.getOrDefault(sum, 0)+1);
+        }
+        return count;
+    }
+}

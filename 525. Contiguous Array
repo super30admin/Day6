@@ -1,0 +1,32 @@
+Time complexity: O(n)
+Space complexity: O(n)
+Did this code submitted successfully on leetcode: Yes
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+        
+        //1. We will create an Hashmap to keep track of 0,1 with the index
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        map.put(0,-1);
+        
+        int len=0, count=0;
+        
+        for(int i=0; i<nums.length; i++){
+            // Whenever we find element as 1, we will increase the count by one
+            if(nums[i]==1)
+                count = count + 1;
+            else
+            // Whenever we find element as 0, we will decrease the count by one
+                count = count - 1;
+            
+            if(map.containsKey(count)){
+            // If the same count already exists, we will update the maximum length count with max of existing length and difference between the current index and the index where last time this same count occured.
+                len=Math.max(len,i-map.get(count));
+            }else{
+                map.put(count,i);
+            }
+        }
+        return len;
+    }
+}
