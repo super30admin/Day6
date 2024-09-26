@@ -1,0 +1,50 @@
+All Test Cases Passed
+Time Complexity- O(n)
+Space Complexity- O(n)
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        l=[]
+        sum1=0
+        for x in s:
+            if x not in l:
+                l.append(x)
+            else:
+                sum1=sum1+2
+                l.remove(x)
+        if len(l)!=0:
+            return (sum1 + 1)
+        else:
+            return sum1
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        dict1={0:-1}
+        length=0
+        rsum=0
+        for i in range(0,len(nums)):
+            if nums[i]==1:
+                rsum=rsum+1
+            else:
+                rsum=rsum-1
+            if rsum not in dict1:
+                dict1[rsum]=i
+            else:
+                if length<(i-dict1[rsum]):
+                    length=i-dict1[rsum]
+        return length
+                
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        cnt=0
+        dict1={0:1}
+        rsum=0
+        for i in range(0,len(nums)):
+            rsum=rsum+nums[i]
+            if (rsum-k) in dict1:
+                cnt=cnt + dict1[rsum-k]
+            if rsum in dict1:
+                dict1[rsum]=dict1[rsum]+1
+            else:
+                dict1[rsum]=1
+        return cnt
