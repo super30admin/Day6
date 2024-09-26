@@ -1,0 +1,29 @@
+// TC : O(n)
+// SC : O(n)
+class Solution {
+    public int longestPalindrome(String s) {
+        if(s == null || s.length() == 0)
+            return 0;
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        boolean odd = false;
+        int length = 0;
+        for(char ch : s.toCharArray()){
+            map.put(ch, map.getOrDefault(ch,0) + 1);
+        }
+        for(int v: map.values()){
+            if(v % 2 == 0){
+                length += v;
+            }
+            else{
+                odd = true;
+                length += v-1;
+            }
+        }
+        if(odd == true){
+            length++;
+        }
+        
+        return length;
+    }
+}
