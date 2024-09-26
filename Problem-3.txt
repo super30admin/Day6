@@ -1,0 +1,35 @@
+// Time Complexity :O(n)
+// Space Complexity :O(1)
+// Did this code successfully run on Leetcode :Yes
+// Any problem you faced while coding this :
+
+
+// Your code here along with comments explaining your approach
+//used hash set
+class Solution {
+    public int longestPalindrome(String s) {
+        
+        if(s == null || s.length() ==0) return 0;
+        
+        HashSet<Character> set = new HashSet<>();
+        int count =0;
+        for(int i =0 ; i<s.length();i++)
+        {
+//if character is found , means pair is found - add 2 and remove the element
+            if(set.contains(s.charAt(i)))
+            {
+                count = count+2;
+                set.remove(s.charAt(i));
+            }
+            else{
+                set.add(s.charAt(i));
+            }
+        }
+        if(!set.isEmpty())
+        {
+            count=count+1;
+        }
+        
+        return count;
+    }
+}
