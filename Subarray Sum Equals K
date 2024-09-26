@@ -1,0 +1,15 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        c = collections.Counter()
+        c[0] = 1
+        a = 0
+        b = 0
+        for num in nums:
+            b = b + num
+            a = a + c[b - k]
+            c[b] = c[b] + 1
+        return a
+    
+# Time complexity: O(n)
+# Space complexity: O(n)
+# Sucessfully implemented on Leetcode

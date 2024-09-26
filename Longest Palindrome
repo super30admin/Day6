@@ -1,0 +1,16 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        c = Counter(s)
+        res = 0
+        f = 0
+        for v in c.values():
+            if v % 2 == 0:
+                res += v
+            else:
+                res += v - 1
+                f = 1
+        return res + f
+    
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+# Successfully implemented on Leetcode
