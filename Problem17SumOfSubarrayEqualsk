@@ -1,0 +1,41 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Disn't understand the second logic
+
+
+// Your code here along with comments explaining your approach
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var subarraySum = function(nums, k) {
+    //Brute Force
+        // let count = 0;
+        // for (let start = 0; start < nums.length; start++) {
+        //     for (let end = start + 1; end <= nums.length; end++) {
+        //         let sum = 0;
+        //         for (let i = start; i < end; i++)
+        //             sum += nums[i];
+        //         if (sum == k)
+        //             count++;
+        //     }
+        // }
+        // return count;--- o(n3)
+    //-----------------------------------------------------------
+    //Using HashMap  
+    let count=0,sum=0;
+    let sumMap= new Map();
+    sumMap.set(0,1)
+    for(let i=0;i<nums.length;i++){
+        sum+=nums[i];
+        if(sumMap.has(sum-k)){
+            count+=sumMap.get(sum-k);}
+        sumMap.set(sum,(sumMap.get(sum) || 0) + 1);
+        
+    }
+    return count;
+    
+};

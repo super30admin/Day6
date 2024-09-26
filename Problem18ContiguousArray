@@ -1,0 +1,33 @@
+// Time Complexity : o(n)
+// Space Complexity : o(n)
+// Did this code successfully run on Leetcode :  yes
+// Any problem you faced while coding this : what if we make a frequency map and compare while traversing
+
+
+// Your code here along with comments explaining your approach
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxLength = function(nums) {
+    //Creating map of count an index
+    let map=new Map();
+    //Important initialization
+    map.set(0,-1);
+    var count=0;
+    var max=0;
+    for(let i=0;i<nums.length;i++){
+        //if count==0 then -1 else +1;
+        count+= (nums[i]===0) ? -1:1;
+        if(map.has(count)){
+            max=Math.max(max,i-map.get(count))
+        }
+       else{
+           map.set(count,i);
+       } 
+        
+        
+    }
+    return max;
+    
+};
