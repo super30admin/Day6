@@ -1,0 +1,20 @@
+// Time - O(n)
+//Space - O(n)
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        unordered_set<char> store;
+        int count = 0;
+        for(auto i: s){
+            if(store.find(i)!=store.end()){
+                store.erase(i);
+                count+=2;
+            }
+            else
+                store.insert(i);
+        }
+        if(store.size()!=0)
+                count+=1;
+        return count;
+    }
+};

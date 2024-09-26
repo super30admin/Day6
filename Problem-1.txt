@@ -1,0 +1,22 @@
+//Time : O(n)
+//Space: O(n)
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int cnt= 0;
+        int total = 0;
+        map<int, int> store;
+        store[0]++;
+        for(int i=0;i<nums.size(); i++){
+            cnt+=nums[i];
+            int comp = cnt -k;
+            
+            if(store.find(comp)!=store.end()){
+                total+=store[comp];
+            }
+            
+            store[cnt]++;
+        }
+        return total;
+    }
+};

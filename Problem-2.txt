@@ -1,0 +1,24 @@
+//Time: O(n)
+//Space: O(n)
+
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+        int sum = 0;
+        int mx = 0;
+        map<int, int> store;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==1)
+                sum-=1;
+            else
+                sum+=1;
+            if(sum==0) mx = i+1;
+            if(store.find(sum)==store.end()){
+                store[sum] = i;
+            }else{
+                    mx = max (i - store[sum], mx);
+            }
+        }
+        return mx;
+    }
+};
