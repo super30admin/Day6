@@ -1,0 +1,28 @@
+//Time O(n)
+//Leetcode tested
+
+import java.util.HashMap;
+
+public class ContiguousArray {
+    public static void main(String[] args) {
+        System.out.println(findMaxLength(new int[]{0,1,0,1}));
+    }
+    public static int findMaxLength(int[] nums) {
+        HashMap<Integer,Integer> array_sum = new HashMap<>();
+        array_sum.put(0,-1);
+        int sum=0;
+        int max=0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] == 0){
+                sum--;
+            }else
+                sum++;
+            System.out.println(sum+" "+i);
+            if(array_sum.containsKey(sum)){
+                max = Integer.max(max,i-array_sum.get(sum));
+            }else
+                array_sum.put(sum,i);
+        }
+        return max;
+    }
+}
