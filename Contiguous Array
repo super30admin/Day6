@@ -1,0 +1,20 @@
+class Solution(object):
+    def findMaxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nmax=0
+        nmap={}
+        nmap[0]=-1
+        runsum=0
+        for i in range(len(nums)):
+            if(nums[i]==0):
+                runsum=runsum-1
+            elif(nums[i]==1):
+                runsum=runsum+1
+            if(runsum in nmap):
+                nmax=max(nmax,i-nmap.get(runsum))
+            else:
+                nmap[runsum]=i
+        return nmax

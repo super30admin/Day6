@@ -1,0 +1,20 @@
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        count=0
+        runsum=0
+        nmap={}
+        nmap[0]=1
+        for i in range(len(nums)):
+            runsum=runsum+nums[i]
+            if((runsum-k) in nmap):
+                count=count+nmap.get(runsum-k)
+            if(runsum not in nmap):
+                nmap[runsum]=1
+            else:
+                nmap[runsum]=nmap.get(runsum)+1
+        return count
