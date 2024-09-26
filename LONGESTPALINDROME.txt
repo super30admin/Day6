@@ -1,0 +1,53 @@
+//Time Complexity : O(n) 
+//Space Complexity : O(n) 
+// Did this code successfully run on Leetcode : Yes
+
+
+
+class Solution {
+    public int longestPalindrome(String s) 
+    {
+        
+//         Sol 1 Two pass solution
+//         int[] count = new int[58];
+//         for(int i=0;i<s.length();i++)
+//         {
+//             count[s.charAt(i)-'A']++;
+//         }
+//         int cnt = 0;
+//         int oddCnt = 0;
+//         for(int i=0;i<58;i++)
+//         {
+//             if(count[i]>0 && count[i]%2==0)
+//             {
+//                 cnt = cnt + count[i];
+//             }else if(count[i]%2==1)
+//             {
+//                  cnt = cnt + count[i] - 1;
+//                  oddCnt = 1;
+//             }
+//         }
+//         return cnt+oddCnt;
+        
+        //single pass solution using hashset
+        int cnt = 0;
+        HashSet<Character> set = new HashSet<Character>();
+        for(int i=0;i<s.length();i++)
+        {
+            if(set.contains(s.charAt(i)))
+            {
+                cnt = cnt + 2;
+                set.remove(s.charAt(i));
+            }else
+            {
+                set.add(s.charAt(i));
+            }
+        }
+        
+        if(!set.isEmpty())
+        {
+            cnt++;
+        }
+        return cnt;
+    }
+}
