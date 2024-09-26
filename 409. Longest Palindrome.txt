@@ -1,0 +1,13 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        di=dict()
+        r=0
+        for i in range (0,len(s)):
+            if di.get(s[i]) is None:
+                di[s[i]]=1
+            else:
+                r=r+2
+                x=di.pop(s[i])
+        if len(di)>=1:
+            r=r+1
+        return r
