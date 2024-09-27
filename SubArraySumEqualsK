@@ -1,0 +1,36 @@
+// Time Complexity: O(n): n -> length of the nums array
+// Space Complexity O(n) putting all entries into the hashmap
+
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        if(nums == null || nums.length == 0) return 0;
+        int rSum = 0;
+        int count = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // initially a sub array with sum 0 has happened before.
+        map.put(0, 1);
+
+        for(int i = 0 ; i < nums.length ; i++){
+
+            rSum += nums[i];
+            int compliment = rSum - k;
+            // checking if the complement exists in the map, that means there is a subarray that exists with sum that
+            // adds to the target
+            if(map.containsKey(compliment)){
+               count += map.get(compliment);
+            }
+            if(!map.containsKey(rSum)){
+                map.put(rSum, 0);
+            }
+
+            map.put(rSum, map.get(rSum) + 1);
+
+        }
+
+        return count;
+
+
+    }
+}

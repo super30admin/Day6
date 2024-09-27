@@ -1,0 +1,38 @@
+// Time Complexity: O(n) -> Iterating over the whole string n-> length of the string
+// Space Complexity: O(1) -> as we only have lowercase letters in the hashset that are 26 in number which is a constant
+
+
+class Solution {
+    public int longestPalindrome(String s) {
+       if(s.length() == 0 || s == null) return 0;
+
+       int count = 0;
+       Set<Character> set = new HashSet<>();
+
+       for(int i = 0 ; i < s.length() ; i++){
+
+           char c = s.charAt(i);
+
+           // set has the character present, so there will be 2 of them, increase count by 2.
+           // remove character from the set as we have to check whether more exist or not.
+           if(set.contains(c)){
+               count += 2;
+               set.remove(c);
+           }
+           else {
+               set.add(c);
+           }
+
+
+       }
+
+       // if set is empty, we can use an additional character for the palindrome that would be in the middle
+        // for example: aabaa.   // if b and d are in the original string, we can use either b or d, hence add 1 to count.
+       if(!set.isEmpty()){
+           count+=1;
+       }
+
+       return count;
+
+    }
+}

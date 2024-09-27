@@ -1,0 +1,47 @@
+// Time Complexity: O(n) -> As we are making one pass over the array. (n -> input size of the array).
+// Space Complexity: O(n) -> As we are using a hashmap of length n.
+
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+
+        // for computing max length of the subarray
+        int max = 0;
+        int rSum = 0; // running sum
+        // map to maintain if the running sum has happened before in the array
+        Map<Integer, Integer> map = new HashMap<>();
+
+        // to put a value for running sum 0 if it has happened before at index -1
+        // to assist with cases like 10101010
+
+        map.put(0, -1);
+
+        // if we want to find the actual subarray
+        int start = 0;
+        int end = 0;
+
+        for(int i = 0 ; i < nums.length ; i++){
+
+            // if element at i is 0, subtract 1 from running sum, if it's 1, add 1 to the running sum.
+            rSum = nums[i] == 0 ? rSum - 1 : rSum + 1;
+
+            if(map.containsKey(rSum)){
+                int currLength = i - map.get(rSum);
+                max = Math.max(max, currLength);
+
+//                if(currLength > max){
+//                    currLength = max;
+//                    start = map.get(rSum); // where the rSum had originally happened
+//                    end = i;
+//                }
+
+
+            }
+
+        }
+
+        return max;
+
+    }
+}
