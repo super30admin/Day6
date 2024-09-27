@@ -1,0 +1,35 @@
+Approach1 : Brute Force Approach
+Time Complexity: O(N^3) -- Worst case 
+Space Complexity :O(1) ---- Constant Space is used
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count=0
+        n=len(nums)
+        for i in range(0,n):
+            for j in range (i+1,n):
+                totalij=nums[i]
+                for q in range(i,j): #### Iterate from Start to end
+                    totalij+=nums[j]
+                if (totalij==k):
+                    count+=1
+                    
+        return count
+ 
+ Approach 2: Hashmap
+Time Complexity: O(N) -- Goes into the loop once and each operation inside that would be O(1) 
+Space Complexity : we have a hashmap and in the worst case , it can be scaled to max of n in the sixe . So O(N)
+Pseudo Code:  I need a Hashmap to record all sum(0 to x) (as the key) and its occurance (as the value). When I have sum(0 to i), 
+I can check in the hasmap the value of sum(0 to i)-K to get the occurance number, and that number will the subarrays that ending with index i.
+ class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        count,total=0,0
+        hashmap={0:1}
+        for i in nums:
+            total+=i
+            if hashmap.get(total-k):
+                count+=hashmap[total-k]
+            if hashmap.get(total):
+                hashpap[total]+=1
+            else:
+                hashmap[total]=1
+        return count

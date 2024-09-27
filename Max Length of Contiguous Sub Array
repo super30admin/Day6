@@ -1,0 +1,21 @@
+Approach : since we might get similar counts of 0's and 1's for few subarrays. So we declare hashmap to record the value of count at each iteration.
+During each iteration, we also check whether the cumulative count value at the current iteration occurs in previous iterations. 
+If it did occur, we calculate the difference between their indices. That would be length of subarray where equal number of zeros and one's. Max of such scenarios
+yields to the max length of the subarray. 
+
+Time Complexity :O(n) -- Array size increases , so the hashmap.
+Space complexity : O(1)
+
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        count=0
+        hashmap={0:-1}
+        max_length=0
+        for i in range(len(nums)):
+            count+= (1 if nums[i]==1 else -1)
+            if count not in hashmap:
+                hashmap[count]=i
+            else:
+                max_length=max(max_length,i-hashmap[count])
+        return max_length

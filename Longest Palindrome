@@ -1,0 +1,39 @@
+Idea: For a palindrome, there are the following two Approach: 
+All letters in the string occur an even number of times; 
+One letter occurs an odd number of times and the rest of the letters occur an even number of times
+We can place the odd letter somewhere in the middle to make the string still a palandrome
+
+Approach 1: Define a hashset and iterate through the string and insert into hashset if char not exists. If it exists increment the count by 2 because that
+character occur even number of items and then remove it from the hashset. At the end check the length of hashset is greater than 0 then just add +1 to the count. 
+
+Time Complexity : O(N)
+Space Complexity : O(1) constant---- > Max characters in the hash set is only alphabets (26)
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        hashset=set()
+        count=0
+        for i in s:
+            if i not in hashset:
+                hashset.add(i)
+            else:
+                count+=2
+                hashset.remove(i)
+                
+        if len(hashset) >0:
+            count+=1
+        return count
+        
+  
+ Approach2 :
+ The Counter() function in collections module will be used which returns a dictionary with iterable as character and value as count.rble or the mapping.
+ 
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        dic = collections.Counter(s)
+        res=0
+        for key,val in dic.items():
+            res+= (val//2)*2
+            if res %2==0 and val%2==1:
+                res+=1
+        return res
