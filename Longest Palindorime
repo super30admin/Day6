@@ -1,0 +1,26 @@
+# space complexity-O(N)
+#time complexity O(N)
+#works on leetcode-Yes
+# we first declare one enmpty list and an count variable. we iterate through the string s and see if it is present in the list l, if it is present in the list l we 
+# increment count by 2 and remove it from the string. else we add it to the string. we return the count if the length of list is 0 or we add 1 and return the count
+# if the lenght of the list is >0.
+
+class Solution(object):
+    def longestPalindrome(self, s):
+        l=[]
+        count=0
+        for i in s:
+            if i in l:
+                count+=2
+                l.remove(i)
+            else:
+                l.append(i)
+        
+        if(len(l)==0):
+            return count
+        else:
+            return (count+1)
+        
+        
+        
+        

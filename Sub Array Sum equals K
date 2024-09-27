@@ -1,0 +1,30 @@
+# time complexity-O(N)
+# space complexity O(1)
+#works in leetcode- Yes
+
+### we first create an empty dict and enter 0 as key and 1 as value. After which we find the complement of K. We then check if the dict has the complement if not we insert the
+complement, if yes then we increment the value of count, we do the same for current sum and then return the count
+
+
+class Solution(object):
+    def subarraySum(self, nums, k):
+        
+        dict1={}
+        currentsum=0
+        count=0
+        dict1[0]=1
+        
+        for i in nums:
+            currentsum+=i
+            compliment=currentsum-k
+            
+            if(compliment in dict1):
+                count+=dict1[compliment]
+                
+            if(currentsum in dict1):
+                dict1[currentsum]=dict1[currentsum]+1
+            else:
+                dict1[currentsum]=1
+                
+        return count
+        
