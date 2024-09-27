@@ -1,0 +1,68 @@
+Subarray Sum Equals K
+#timeComplexity:O(len(nums))
+#spaceComplexity:O(len(nums))
+class Solution:
+	def subarraySum(self, nums: List[int], k: int) -> int:
+
+		ans=0
+		prefsum=0
+		d={0:1}
+
+		for num in nums:
+			prefsum = prefsum + num
+
+			if prefsum-k in d:
+				ans = ans + d[prefsum-k]
+
+			if prefsum not in d:
+				d[prefsum] = 1
+			else:
+				d[prefsum] = d[prefsum]+1
+
+		return ans
+
+Contiguous Array
+#TC: O(n)
+#SC: O(n)
+class Solution(object):
+    def findMaxLength(self, nums):
+        count = 0
+        max_length=0
+        table = {0: 0}
+        for index, num in enumerate(nums, 1):
+            if num == 0:
+                count -= 1
+            else:
+                count += 1
+            
+            if count in table:
+                max_length = max(max_length, index - table[count])
+            else:
+                table[count] = index
+        
+        return max_length
+
+Longest Palindrome
+#TC:O(len(s))
+#SC:O(len(s))
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        
+        dic ={}
+        res = 0
+        odd = False
+        
+        for i in s:
+            dic.update({i:s.count(i)})
+        
+        for key,value in dic.items():
+            if value%2==0:
+                res += value
+            else:
+                res += value - 1
+                odd = True
+                
+        if odd:
+            return res+1
+        else:
+            return res
