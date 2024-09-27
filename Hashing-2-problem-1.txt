@@ -1,0 +1,33 @@
+# Hashing-2
+
+## Problem1 (https://leetcode.com/problems/subarray-sum-equals-k/)
+
+##TC : O(N)
+
+#SC: O(N)
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        
+        HashMap<Integer,Integer> map =  new HashMap<>();
+        map.put(0,1);
+        int sum=0;
+        int count=0;
+        int temp=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            sum=sum+nums[i];
+            temp = sum-k;
+            if(map.containsKey(temp))
+                count+=map.get(temp);
+           
+                if(!map.containsKey(sum))
+                      map.put(sum,1);
+                else
+                    map.put(sum,map.get(sum)+1);
+          
+        }
+        
+        return count;
+    }
+}

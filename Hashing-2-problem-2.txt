@@ -1,0 +1,35 @@
+
+## Problem2 (https://leetcode.com/problems/contiguous-array/)
+
+##TC : O(N)
+
+##SC : O(N)
+
+
+
+
+
+class Solution {
+    public int findMaxLength(int[] nums) 
+    {
+        int sum=0;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        map.put(0,-1);
+        int max = 0;
+        
+      for(int i=0;i<nums.length;i++)
+      { 
+             sum=sum+((nums[i]==1)?1:-1);
+             if(map.containsKey(sum))
+             {
+                 int len = i-map.get(sum);
+                 max=Integer.max(max,len);
+             }
+             else
+                map.put(sum,i);
+            
+        
+      }
+        return max;
+    }
+}
