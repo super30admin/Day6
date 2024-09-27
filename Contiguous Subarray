@@ -1,0 +1,39 @@
+// Time Complexity : O(N)
+// Space Complexity : O(N) 
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Running Sum + Logic for -1 if 0 is encountered to determine the index eg: 3 - (-1) = 4.
+
+
+// Your code here along with comments explaining your approach :  Idea is to store running sum in hashmap and determine the max based on it's occurence
+SOLUTION:
+
+//Practice Again
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+        if(nums.length == 0 || nums==null){
+            return 0;
+        }
+
+        int rsum = 0;
+        int max = 0;
+        HashMap<Integer,Integer> hmap = new HashMap<>();
+        hmap.put(rsum,-1);
+        
+        for(int i = 0 ; i < nums.length ; i++){
+            if(nums[i]==0){
+                rsum += -1;
+            }else{
+                rsum += 1;
+            }
+            
+           if(hmap.containsKey(rsum)){
+                max = Math.max(max,i - hmap.get(rsum));
+           }else{
+               hmap.put(rsum,i);
+           }
+        }
+        
+        return max;
+    }
+}

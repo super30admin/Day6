@@ -1,0 +1,43 @@
+// Time Complexity : O(N) ?
+// Space Complexity : O(N) ?
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this : Running Sum technique + Logic of hmap.put(0,1) as base case.
+
+
+// Your code here along with comments explaining your approach :  Idea is to use Hashmap + check if complement (rsum - k) exists in array to determine the count
+SOLUTION:
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        if(nums==null || nums.length==0){
+            return 0;
+        }
+        
+        // Learn ALL 4 Approaches  
+        HashMap<Integer,Integer> hmap = new HashMap<>();
+        int rsum = 0,count = 0;
+        
+        // Add initial value to HashMap as base case such that sum of elements until now is 0
+        hmap.put(0,1);
+        
+        // Key = complement (rsum  - k-> to determine if there exists previous subarray), value = no. of times rsum is found in array
+        // Check if complement exist to JUST to increse COUNT
+        // if rsum exists-> increment else add to hashmap
+        
+        for(int i = 0 ; i < nums.length ; i++){
+            rsum += nums[i];
+            int complement  = rsum - k;
+            if(hmap.containsKey(complement)){
+                count += hmap.get(complement);
+            }
+            
+            if(hmap.containsKey(rsum)){
+                    hmap.put(rsum, hmap.get(rsum) + 1);    
+            }else{
+                    hmap.put(rsum,1);
+            } 
+        }
+        
+        return count;
+    }
+}
