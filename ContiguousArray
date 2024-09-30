@@ -1,0 +1,31 @@
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+// This solution we discussed in class.
+
+
+class Solution {
+    public int findMaxLength(int[] nums) {
+        if(nums == null || nums.length < 2 ) return 0;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+        int max = 0;
+        int running_sum = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] == 0) running_sum--;
+            else running_sum++;
+
+            if(map.containsKey(running_sum)) {
+                max = Math.max(max, i-map.get(running_sum));
+            }
+            else {
+                map.put(running_sum, i);    
+            }
+
+        }
+           return max;
+
+    }
+}
