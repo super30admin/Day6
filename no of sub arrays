@@ -1,0 +1,47 @@
+// Time Complexity : o(n);
+// Space Complexity :o(1)
+// Did this code successfully run on Leetcode : some cases failed.
+// Any problem you faced while coding this : regarding change of sum value.
+
+
+// Your code here along with comments explaining your approach;-storing them in hashmap with array indices as keys and checking sum only in one loop.
+
+
+
+
+
+
+
+
+import java.util.HashMap;
+class Solution {
+    
+    public int subarraySum(int[] nums, int k) {
+        HashMap<Integer,Integer> b=new HashMap<>();
+        int counter=0;
+        for(int i=0;i<nums.length;i++){
+            b.put(i,nums[i]);
+        }
+        int j=0;
+         int y=b.get(j);
+        while(j<=nums.length){
+            if(y==k){
+                counter=counter+1;
+                y=0;
+            
+            }
+            if(j<nums.length-1){
+                y=y+b.get(j+1);
+            }
+           
+            else{
+                if(y+b.get(nums.length-1)==k){
+                    counter=counter+1;
+                }
+        }
+            j=j+1;
+            
+        
+    }       
+return counter;}
+}
