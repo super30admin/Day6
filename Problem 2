@@ -1,0 +1,14 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        cumulative_sum = 0
+        max_length = 0
+        sum_index_map = {0: -1}  # Initialize with 0 at index -1 to handle edge cases
+        
+        for i, num in enumerate(nums):
+            cumulative_sum += 1 if num == 1 else -1
+            if cumulative_sum in sum_index_map:
+                max_length = max(max_length, i - sum_index_map[cumulative_sum])
+            else:
+                sum_index_map[cumulative_sum] = i
+        
+        return max_length
