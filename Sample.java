@@ -30,3 +30,34 @@ class Solution {
         return max;
     }
 }
+
+
+
+// contiguous subarray
+// Time complexity :O(n)
+// Space complexity:O(n)
+class Solution {
+    public int findMaxLength(int[] nums) { 
+        int rsum =0;
+        int max = 0;
+        Map<Integer, Integer> maps = new HashMap<Integer, Integer>();
+        maps.put(0,-1);
+        for (int i =0;i<nums.length;i++) {
+            if (nums[i] == 0) {
+                rsum++;
+            } 
+            if (nums[i] == 1) {
+                rsum--;
+            }
+            if (!maps.containsKey(rsum)) {
+                maps.put(rsum, i);
+            } else {
+                // difference is calculated to get the length 
+                if (max < (i-maps.get(rsum))) {
+                    max = (i-maps.get(rsum));
+                }
+            }
+        }
+        return max;
+    }
+}
