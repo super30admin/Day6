@@ -1,5 +1,8 @@
 import java.util.HashMap;
-
+// Time Complexity : O(n)
+// Space Complexity : O(n)
+// Did this code successfully run on Leetcode : YES
+// Any problem you faced while coding this : No
 //Approach is use to running sum as there are only 2 values 0 & 1 if 0 occurs the rsum will be rsum-1 and for 1 it'll be rsum +1
 class Problem1 {
     public int findMaxLength(int[] nums) {
