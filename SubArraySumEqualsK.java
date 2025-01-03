@@ -18,23 +18,17 @@ public class SubArraySumEqualsK {
       return 0;
     }
     int currSum = 0;
-    int result = 0;
+    int count = 0;
     Map<Integer, Integer> map = new HashMap<>();
+    map.put(0, 1);
     for (int i = 0; i < nums.length; i++) {
       currSum += nums[i];
-      if (currSum == k) {
-        result++;
-      }
       if (map.containsKey(currSum - k)) {
-        result += map.get(currSum - k);
+        count += map.get(currSum - k);
       }
-      if (map.containsKey(currSum)) {
-        map.put(currSum, map.get(currSum) + 1);
-      } else {
-        map.put(currSum, 1);
-      }
+      map.put(currSum, map.getOrDefault(currSum, 0) + 1);
     }
-    return result;
+    return count;
   }
 
 }
