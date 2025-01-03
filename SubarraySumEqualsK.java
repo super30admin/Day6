@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 /**
  * Time Complexity: O(N)
- * Space Complexity: O(1)
+ * Space Complexity: O(N)
  * Ran on leetcode?: Yes
  * Any problems faced?: No
  */
