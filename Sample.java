@@ -61,3 +61,34 @@ class Solution {
         return max;
     }
 }
+
+
+// subarray sum equals k 
+
+//Time complexity:O(n)
+// Space complexity:O(n)
+
+
+class Solution {
+    int rsum=0;
+    int count=0;
+    Map<Integer,Integer> mapcount = new HashMap<Integer, Integer>();
+
+    public int subarraySum(int[] nums, int k) {
+        mapcount.put(0,1);
+        for (int i=0;i<nums.length;i++) {
+            rsum = rsum + nums[i];
+            if(!mapcount.containsKey(rsum-k)) {
+                mapcount.put(rsum, mapcount.getOrDefault(rsum,0)+1);
+            } else {
+                System.out.println(rsum-k);
+                count = count + mapcount.get(rsum-k);
+                mapcount.put(rsum, mapcount.getOrDefault(rsum,0)+1);
+                
+                System.out.println(count);
+            } 
+
+        }
+        return count;
+    }
+}
