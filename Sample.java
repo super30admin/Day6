@@ -1,3 +1,31 @@
+/******************** PROBLEM 1 *******************/
+
+// Time Complexity : 0(N)
+// Space Complexity : 0(N)
+// Did this code successfully run on Leetcode : YES
+// Any problem you faced while coding this : NO
+
+/*
+Intuition is to store the running sum at each index and calculate the target
+minus the current running sum to see if the value has occured, if it has
+keep incrementing the counting based on the frequency and return it
+*/
+
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        int count=0,rSum=0;
+        HashMap<Integer,Integer> freq=new HashMap<>();
+        freq.put(0,1);
+        for(int i=0;i<nums.length;i++){
+            rSum+=nums[i];
+            count+=freq.getOrDefault(rSum-k,0);
+            freq.put(rSum,freq.getOrDefault(rSum,0)+1);
+        }
+        return count;
+    }
+}
+
 /******************** PROBLEM 2 *******************/
 
 // Time Complexity : 0(N)
