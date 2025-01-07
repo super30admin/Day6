@@ -3,7 +3,7 @@
     T.C: O(n) :: S.C: O(n)
 
     Solved using a single HashMap, by iterating over the array once and calculating
-    the running sum, we can store this running sum's occurrence as key and value.
+    the running sum. We can now store this running sum's occurrence as key and value.
     Perform a condition check if diff = rSum - target is present in HashMap add its
     occurrence to the resultant count and return in the end.
 */
