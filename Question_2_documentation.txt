@@ -1,0 +1,9 @@
+Time Complexity : O(n)
+Space Complexity : O(n)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I am recording the index of the leftmost occurance of the unique difference between occurances of 0 and 1 and such that for every index, as the
+rightmost ending point, I am finding the leftmost index such thatthe # of occurances of 0 and 1 is same.

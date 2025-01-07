@@ -1,0 +1,9 @@
+Time Complexity : O(n)
+Space Complexity : O(n)
+Did this code successfully run on Leetcode : Yes
+Any problem you faced while coding this : No
+
+
+Your code here along with comments explaining your approach in three sentences only
+I am finding the frequency of runningSum-k in the past subarray and adding it to the global counts variable and returning it at
+the end after traversing through n numbers.
