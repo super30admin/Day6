@@ -1,5 +1,7 @@
 # Time complexity is O(n) - iterate through all the characters in the given string
 # Space complexity is O(1) - storing the occurances of the characters and calculating count in constant time
+# Did this code successfully run on Leetcode : yes
+# Any problem you faced while coding this : none
 class Solution:
     def longestPalindrome(self, s: str) -> int:
         if s is None or len(s) == 0:

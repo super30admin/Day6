@@ -1,5 +1,7 @@
 # Time complexity is O(n) - iterate through all the elements
 # Space complexity is O(n) - store running sum of the elements
+# Did this code successfully run on Leetcode : yes
+# Any problem you faced while coding this : none
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         if not nums or len(nums) == 0:
