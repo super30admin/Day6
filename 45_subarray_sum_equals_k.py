@@ -2,6 +2,8 @@
 # Space complexity - O(1)
 
 # Approach - Maintain rSum : freq map. Only append count if (rSum - k) is in the map
+# Edge case: Instead of maintaining a 0 entry in map, you can increement count by value of 
+# target key in the map
 
 from typing import List
 class Solution:
