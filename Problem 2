@@ -1,0 +1,17 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        Map = {}
+        Map[0] = -1
+        rSum = 0
+        Max = 0
+
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                rSum -= 1
+            else:
+                rSum += 1
+            if rSum not in Map:
+                Map[rSum] = i
+            else:
+                Max = max(Max, (i - Map[rSum]))
+        return Max      
