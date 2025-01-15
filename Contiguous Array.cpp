@@ -6,16 +6,23 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
+        int rSum = 0, maxLength = 0, start = 0;
+        int end = 0;
         unordered_map<int, int> map;
-        int maxL = 0, rSum = 0;
-        // for taking care of the edge case
+        // for taking care of the edge case where start of occurence of running sum = 0 is stored at -1 
         map[0] = -1;
         for(int i = 0; i < nums.size(); i++) {
             if(nums[i] == 0) rSum--;
             else rSum++;
-            if(map.find(rSum) != map.end()) maxL = max(maxL, i - map[rSum]); // calculating the length of subarray and putting the max in max
+            if(map.find(rSum) != map.end()) {
+                if(maxLength < (i - map[rSum])) {
+                    maxLength = (i - map[rSum]); // length of subarray
+                    start = map[rSum] + 1; // visualize the pattern
+                    end = i;
+                }
+            }
             else map[rSum] = i;
         }
-        return maxL;
+        return maxLength;
     }
 };
