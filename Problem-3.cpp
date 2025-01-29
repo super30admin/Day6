@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/longest-palindrome/
 // Time Complexity : O(n) where n is the length of the input stirng
-// Space Complexity : O(n)
+// Space Complexity : O(1)
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : No
 
