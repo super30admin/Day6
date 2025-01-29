@@ -5,6 +5,16 @@ import java.util.HashMap;
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : no
 
+// Your code here along with comments explaining your approach
+/*
+Use a counter : when we encounter a
+0 : decrement the count
+1 : increment the count
+make use of a map to keep track of the indices to find the largest subarray
+if we encounter a count that is previously seen, the index between the current
+and previously seen count is a continuous subarray
+ */
+
 public class Problem2 {
 
     public static void main(String[] args) {

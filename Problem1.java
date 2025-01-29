@@ -5,6 +5,13 @@ import java.util.HashMap;
 // Did this code successfully run on Leetcode : Yes
 // Any problem you faced while coding this : no
 
+// Your code here along with comments explaining your approach
+/*
+It is based on the fact that
+if sum at two different points in the array differ by the target,
+then it can be inferred that the count of the elements in the middle is equal to the target
+ */
+
 public class Problem1 {
 
     public static void main(String[] args) {
