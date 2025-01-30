@@ -1,3 +1,5 @@
+# Time: O(n)
+# Space: O(1) 26 small chars + 26 uppercase chars
 class Solution:
     def longestPalindrome(self, s: str) -> int:
         charSet = set()
