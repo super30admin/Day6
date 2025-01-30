@@ -1,3 +1,8 @@
+// Time Complexity : 0(N)
+// Space Complexity : 0(N)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
 class SubArray {
     public int subarraySum(int[] nums, int k) {
 
