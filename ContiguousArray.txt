@@ -1,0 +1,22 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        if nums == None or len(nums) == 0:
+            return 0
+        rSum = 0
+        map1={}
+        map1[0] = -1
+        Max=0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                rSum -= 1
+            else:
+                rSum += 1
+            if rSum in map1:
+                Max = max(Max,( i - map1[rSum]))
+            else:
+                map1[rSum] = i
+        return Max
+
+
+#Time = O(n)
+#Space = O(n)
